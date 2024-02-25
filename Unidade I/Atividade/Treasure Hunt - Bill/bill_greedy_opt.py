@@ -167,31 +167,8 @@ class GridWorld(tk.Tk):
 # As parameters you receive the euclidean distance
 # to the goal from each neighborhood position
 
+#! Algoritmo 1
 """ def example_callback(up, down, left, right):
-    directions = ["up", "down", "left", "right"]
-    distances = [up, down, left, right]
-    
-    if all(d is None for d in distances):
-        return "giveup"
-    # Encontrar a direção com a menor distância
-    min_distance = min([d for d in distances if d is not None])
-
-    # Se a menor distância for menor que 2, escolher essa direção
-    if min_distance < 2:
-        return directions[distances.index(min_distance)]
-
-    # Calcular o índice da iteração atual (considerando uma sequência de 3)
-    iteration_index = random.randint(0, 2)
-
-    # Se o índice for 0 ou 1, escolher aleatoriamente entre as direções disponíveis
-    if iteration_index in [0, 1]:
-        valid_directions = [dir for dir, dist in zip(directions, distances) if dist is not None]
-        return random.choice(valid_directions) if valid_directions else random.choice(directions)
-
-    # Se o índice for 2, escolher a direção correta
-    return directions[distances.index(min_distance)] """
-
-def example_callback(up, down, left, right):
         directions = ["up", "down", "left", "right"]
         distances = [up, down, left, right]
         
@@ -212,7 +189,28 @@ def example_callback(up, down, left, right):
             return random.choice(choices)
         
         # Se não houver direções válidas, escolher aleatoriamente entre todas as direções
-        return random.choice(directions)
+        return random.choice(directions) """
+    
+#! Algoritmo 2
+def example_callback(up, down, left, right):
+    directions = ["up", "down", "left", "right"]
+    distances = [up, down, left, right]
+    
+    if all(d is None for d in distances):
+        return "giveup"
+    # Encontrar a direção com a menor distância
+    min_distance = min([d for d in distances if d is not None])
+
+    # Calcular o índice da iteração atual (considerando uma sequência de 3)
+    iteration_index = random.randint(0, 2)
+
+    # Se o índice for 0 ou 1, escolher aleatoriamente entre as direções disponíveis
+    if iteration_index in [0, 1]:
+        valid_directions = [dir for dir, dist in zip(directions, distances) if dist is not None]
+        return random.choice(valid_directions) if valid_directions else random.choice(directions)
+    else:
+    # Se o índice for 2, escolher a direção correta
+        return directions[distances.index(min_distance)]
 
 """ def run_simulation():
     successes = 0
